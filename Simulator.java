@@ -23,43 +23,52 @@ public class Simulator{
 					 " and amounts won and lost are "+monthlyStats[29]+","+Math.abs(monthlyStats[0])+" respectively");
 	}
 	public static void gamble(){
-		Random rand=new Random();
-		int lowerLimit=Stake/2;
-		int upperLimit=Stake+50;
-		int temp=Stake;
-		int noOfDays=0;
-		int noOfDaysWon=0;
-		int noOfDaysLost=0;
-		int amountWon=0;
-		int amountLost=0;
-		while(noOfDays < 30){
-			while(Stake > lowerLimit && Stake < upperLimit){
-				int r=rand.nextInt(2);
-				if(r==gamblerWon){
-					Stake++;
-					amountWon++;
+		int monthCounter=1;
+		while(1==1){
+			System.out.print("Month "+monthCounter+" of gambling" + "\n________________________________\n\n");
+			Random rand=new Random();
+			int lowerLimit=Stake/2;
+			int upperLimit=Stake+50;
+			int temp=Stake;
+			int noOfDays=0;
+			int noOfDaysWon=0;
+			int noOfDaysLost=0;
+			int amountWon=0;
+			int amountLost=0;
+			while(noOfDays < 30){
+				while(Stake > lowerLimit && Stake < upperLimit){
+					int r=rand.nextInt(2);
+					if(r==gamblerWon){
+						Stake++;
+						amountWon++;
+					}
+					else{
+						Stake--;
+						amountLost++;
+					}
+				}
+				monthlyStats[noOfDays]=temp-Stake;
+				noOfDays++;
+				if(noOfDays==20){
+					System.out.println("Total amount won and lost in 20 days is "+amountWon+","+amountLost+" respectively");
+				}
+				int i=temp-Stake;
+				if(Stake > 100){
+					noOfDaysWon++;
 				}
 				else{
-					Stake--;
-					amountLost++;
+					noOfDaysLost++;
 				}
+				Stake=100;
 			}
-			monthlyStats[noOfDays]=temp-Stake;
-			noOfDays++;
-			if(noOfDays==20){
-				System.out.println("Total amount won and lost in 20 days is "+amountWon+","+amountLost+" respectively");
+			System.out.println("No of days won and lost in one month are "+noOfDaysWon+","+noOfDaysLost+" respectively");
+			sort();
+			if(noOfDaysLost > noOfDaysWon){
+				break;
 			}
-			int i=temp-Stake;
-			if(Stake > 100){
-				noOfDaysWon++;
-			}
-			else{
-				noOfDaysLost++;
-			}
-			Stake=100;
+			monthCounter++;
+			System.out.print("\n\n");
 		}
-		System.out.println("No of days won and lost in one month are "+noOfDaysWon+","+noOfDaysLost+" respectively");
-		sort();
 	}
 	public static void main(String[]args) {
 		new Simulator();
