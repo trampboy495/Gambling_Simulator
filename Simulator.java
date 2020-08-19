@@ -1,11 +1,23 @@
+import java.util.Random;
 public class Simulator{
-	 final int Stake;
-         final int Bet;
+	static int Stake;
+	static int gamblerWon=1;
+	int gamblerLost=0;
 	public Simulator(){
 		this.Stake=100;
-		this.Bet=1;
+	}
+	public static void gamble(){
+		Random rand=new Random();
+		int r=rand.nextInt(2);
+		if(r==gamblerWon){
+			Stake++;
+		}
+		else{
+			Stake--;
+		}
 	}
 	public static void main(String[]args) {
 		new Simulator();
+		gamble();
 	}
 }
