@@ -8,12 +8,15 @@ public class Simulator{
 	}
 	public static void gamble(){
 		Random rand=new Random();
-		int r=rand.nextInt(2);
-		if(r==gamblerWon){
-			Stake++;
-		}
-		else{
-			Stake--;
+		int stakeLimit=Stake/2;
+		while(Stake > stakeLimit){
+			int r=rand.nextInt(2);
+			if(r==gamblerWon){
+				Stake++;
+			}
+			else{
+				Stake--;
+			}
 		}
 	}
 	public static void main(String[]args) {
