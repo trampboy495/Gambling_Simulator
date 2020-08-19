@@ -8,16 +8,26 @@ public class Simulator{
 	}
 	public static void gamble(){
 		Random rand=new Random();
-		int stakeLimit=Stake/2;
-		while(Stake > stakeLimit){
-			int r=rand.nextInt(2);
-			if(r==gamblerWon){
-				Stake++;
+		int lowerLimit=Stake/2;
+		int upperLimit=Stake+50;
+		int noOfDays=0;
+		int amountWon=0;
+		int amountLost=0;
+		while(noOfDays < 20){
+			while(Stake > lowerLimit && Stake < upperLimit){
+				int r=rand.nextInt(2);
+				if(r==gamblerWon){
+					Stake++;
+					amountWon++;
+				}
+				else{
+					Stake--;
+					amountLost++;
+				}
 			}
-			else{
-				Stake--;
-			}
+			noOfDays++;
 		}
+		System.out.println("amount won in 20 days is "+amountWon+" amount lost in 20 days is "+amountLost);
 	}
 	public static void main(String[]args) {
 		new Simulator();
